@@ -1,9 +1,10 @@
 import React from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
-import Header from './components/Header'
+import { Header } from './components'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { PlannerView, RecipeView, ShoppingListView, StockView } from './views';
+import AddRecipeView from './views/addViews/AddRecipeView';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path='/stock' element={<StockView/>}/>
         <Route path='/planificateur' element={<PlannerView/>}/>
         <Route path='/liste-de-courses' element={<ShoppingListView/>}/>
+        <Route path='/recettes/ajout' element={<AddRecipeView/>}/>
       </Routes>
     </Router>
   );
