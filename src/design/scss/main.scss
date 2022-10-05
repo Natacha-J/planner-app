@@ -1,0 +1,23 @@
+@import './colorsApp.scss';
+@font-face {
+    font-family: 'Courgette';
+    src: url("../fonts/Courgette-Regular.ttf");
+}
+:root{
+    font-size: 62.5%;
+    body{
+        min-height: 100vh;
+        background: url('../img/bg.svg') center center / cover;
+    }
+}
+
+header nav ul{
+    font-family: 'Courgette';
+    font-size: 2rem;
+}
+h1{
+    font-family: 'Comic sans MS';
+}
+aside{
+    height: min-content;
+}

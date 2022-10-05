@@ -5,11 +5,17 @@ import IngredientsList from '../lists/IngredientsList'
 const SmallCard: FunctionComponent = (props: any) => {
     
     return (
-        <Card style={{ width: '20rem' }} className='m-3'>
-            <Card.Header className='text-center'>{ props.title }</Card.Header>
-            <Card.Body>
-                <Card.Title>Ingredients :</Card.Title>
-                <IngredientsList {...props.Ingredients}/>
+        <Card style={{ width: '18rem' }} className='m-3 border-0 shadow-lg' >
+            <Card.Header className='text-center rounded-top rounded-circle pb-3 pt-2'>{(props.title)? props.title :  props.name }</Card.Header>
+            <Card.Body className='rounded'>
+                {(props.title)?
+                <>
+                    <Card.Title>Ingredients : </Card.Title>
+                    <IngredientsList {...props.Ingredients}/>
+                </>
+                 : 
+                <IngredientsList {...props}/>
+                }
             </Card.Body>
         </Card>
     )

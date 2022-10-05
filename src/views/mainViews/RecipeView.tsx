@@ -1,7 +1,7 @@
 import { FunctionComponent, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { SmallCard } from '../../components';
+import { Loader, SmallCard } from '../../components';
 import { getAllRecipes, getRecipes, getRecipesError, getRecipesStatus } from '../../store/recipesSlice';
 import { AppDispatch } from '../../store/store';
 
@@ -19,19 +19,23 @@ const RecipeView: FunctionComponent = () => {
     }, [recipesStatus, dispatch])
     
     return(
-        <section>
-            <h1 className='text-center'>Les recettes</h1>
-            {
-                (recipesStatus === 'succeeded') ?
-                <ul>
-                    { recipes.map((recipe:any) => 
-                        <SmallCard key={ recipe.id } {...recipe}/>
-                    )}
-                </ul>
-                :
-                <p>Chargement</p>
+        <section className='row'>
+            <h1 className='col-10 text-center mt-5'>Les recettes</h1>
+            <main className='col-10'>
+                {(recipesStatus === 'succeeded')
+                    ?
+                    <ul className='list-unstyled m-5 d-flex justify-content-around '>
+                        { recipes.map((recipe:any) => 
+                            <li key={ recipe.id }><SmallCard {...recipe}/></li>
+                        )}
+                    </ul>
+                    :
+                    <Loader/>
             }
-            <Link to='/recettes/ajout' className='btn btn-warning'>Ajouter une recette</Link>
+            </main>
+            <aside className='col-2 bg-transparent border-0'>
+                <Link to='/recettes/ajout' className='btn text-white m-3'>Ajouter une recette</Link>
+            </aside>
         </section>
     )
 }

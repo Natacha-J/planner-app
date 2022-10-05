@@ -1,0 +1,41 @@
+@import './_variables';
+//header
+header{
+    nav {
+        background: linear-gradient(to right, transparent 2%, rgba(164, 129, 101, 0.539) 14%, rgba(164, 129, 101, 0.539) 86%, transparent 98%);
+    }
+}
+//aside
+aside{
+    background-color: rgba(128, 128, 128, 0.482);
+    border: 1px solid rgba(128, 128, 128, 0.605);
+}
+//cards
+div{
+    &.card-header{
+        background: $mainColor;
+        color: whitesmoke;
+    }
+    &.card-body{
+    background-color: $lightColor;
+    }
+}
+
+//call-to-action btn
+button.btn, a.btn{
+    background-color: $btnColor;
+    border: 1px solid $lightColor;
+    &:hover{
+        background-color: $mainColor;
+        border: 1px solid $lightColor;
+    }
+    &:active{
+        background-color: $mainColor;
+        border: 1px solid $lightColor;
+    }
+}
+
+//spinner
+div.spinner-border{
+    box-shadow: 2px -2px $mainColor inset;
+}

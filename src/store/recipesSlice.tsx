@@ -16,7 +16,6 @@ const initialState: recipeState = {
 }
 
 // HTTP Request
-
 export const getRecipes = createAsyncThunk('recipes/getRecipes', async() => {
     const access = await getToken()
     const response = await axios.get(`${URL_BASE}/recipes`, {
