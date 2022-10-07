@@ -27,6 +27,8 @@ export const getIngredients = createAsyncThunk('ingredients/getIngredients', asy
 })
 
 export const addIngredient = createAsyncThunk('ingredients/addIngredient', async(datas:any) => {
+    console.log(datas);
+    
     const access = await getToken()
     const response = await axios.post(`${URL_BASE}/ingredients`, datas, {
         headers: {
@@ -43,6 +45,20 @@ export const deleteIngredient = createAsyncThunk('ingredients/deleteIngredient',
             'Authorization': `Bearer ${access}`
         }
     })
+    return response.data.ingredient   
+})
+
+export const updateIngredient = createAsyncThunk('ingredients/updateIngredient', async(data:any) => {
+    const access = await getToken()
+    console.log(data);
+    
+    const response = await axios.put(`${URL_BASE}/ingredients/${parseInt(data.id)}`, {name: data.name}, {
+        headers: {
+            'Authorization': `Bearer ${access}`
+        }
+    })
+    console.log(response.data);
+    
     return response.data.ingredient   
 })
 
@@ -77,6 +93,29 @@ const ingredientsSlice = createSlice({
                 state.status = 'failed'
                 state.error = action.error.message
             })
+            //UPDATE
+            .addCase(updateIngredient.pending, (state, action) => {
+                state.status = 'loading'
+            })
+            .addCase(updateIngredient.fulfilled, (state, action) => {
+                state.status = 'succeeded'
+                console.log(action.payload);
+                
+                let newIngredients: object[] = [];
+                state.ingredients.map((ingredient:any) => {
+                    if (ingredient.id === action.payload.id) {
+                        ingredient = action.payload
+                    }
+                    newIngredients.push(ingredient)
+                })
+                
+                state.ingredients = newIngredients;
+                
+            })
+            .addCase(updateIngredient.rejected, (state, action) => {
+                state.status = 'failed'
+                state.error = action.error.message
+            })  
             //DELETE
             .addCase(deleteIngredient.pending, (state, action) => {
                 state.status = 'loading'
@@ -88,7 +127,7 @@ const ingredientsSlice = createSlice({
             .addCase(deleteIngredient.rejected, (state, action) => {
                 state.status = 'failed'
                 state.error = action.error.message
-            })            
+            })           
     }
 })
 

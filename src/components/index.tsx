@@ -2,6 +2,7 @@ export { default as Header } from './Header'
 export { default as Loader } from './Loader'
 
 //cards
+export { default as AsideCard } from './cards/AsideCard'
 export { default as SmallCard } from './cards/SmallCard'
 
 //combos
