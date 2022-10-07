@@ -3,7 +3,7 @@ import { Button } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { AsideCard, Loader, SmallCard } from '../../components';
-import { getAllRecipes, getRecipes, getRecipesError, getRecipesStatus } from '../../store/recipesSlice';
+import { addRecipe, getAllRecipes, getRecipes, getRecipesError, getRecipesStatus } from '../../store/recipesSlice';
 import { AppDispatch } from '../../store/store';
 
 const RecipeView: FunctionComponent = () => {
@@ -22,6 +22,9 @@ const RecipeView: FunctionComponent = () => {
             dispatch(getRecipes())
             setNeedRefresh(false)
         }
+        if(recipesStatus === 'succeeded'){
+            setIsFirstLoad(false)
+        }  
     }, [recipesStatus, needRefresh])
     
     const getChanging = (res:boolean) => {
@@ -29,23 +32,24 @@ const RecipeView: FunctionComponent = () => {
     }
 
     const addNewRecipe = (datas:any) => {
-        console.log(datas);
+        dispatch(addRecipe(datas))
+        .then(() => setNeedRefresh(true))
         
     }
 
     return(
         <section className='row'>
-            <h1 className='col-10 text-center mt-5'>Les recettes</h1>
+            <h1 className='col-10 text-center m-5'>Les recettes</h1>
             <main className='col-9'>
-                {(recipesStatus === 'succeeded')
-                    ?
-                    <ul className='list-unstyled m-5 d-flex justify-content-around '>
+            {(isFirstLoad === true)
+                     ?
+                     <Loader/>
+                     :
+                    <ul className='list-unstyled inline-block list-inline mx-auto'>
                         { recipes.map((recipe:any) => 
-                            <li key={ recipe.id }><SmallCard {...recipe} getChanging={getChanging}/></li>
+                            <li key={ recipe.id } className='list-inline-item'><SmallCard {...recipe} getChanging={getChanging}/></li>
                         )}
                     </ul>
-                    :
-                    <Loader/>
             }
             </main>
             <AsideCard sendDatas={addNewRecipe} component='Recipe'/>
