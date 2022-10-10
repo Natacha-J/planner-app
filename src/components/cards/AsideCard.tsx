@@ -37,9 +37,7 @@ const AsideCard: FunctionComponent<{sendDatas: Function, component: string}> = (
 
     const addToList = (datas:any, e:any) => {
         e.stopPropagation()
-        
         setIngredientsList(ingredientsList.concat({...ingredientSelected, quantity: datas.quantity} ))
-        console.log(datas.quantity);
     }
 console.log(ingredientsList);
 

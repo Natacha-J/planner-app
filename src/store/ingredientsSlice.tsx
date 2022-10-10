@@ -19,21 +19,15 @@ const initialState: ingredientState = {
 export const getIngredients = createAsyncThunk('ingredients/getIngredients', async() => {
     const access = await getToken()
     const response = await axios.get(`${URL_BASE}/ingredients`, {
-        headers: {
-            'Authorization': `Bearer ${access}`
-        }
+        headers: {'Authorization': `Bearer ${access}` }
     })
     return response.data.ingredients
 })
 
 export const addIngredient = createAsyncThunk('ingredients/addIngredient', async(datas:any) => {
-    console.log(datas);
-    
     const access = await getToken()
     const response = await axios.post(`${URL_BASE}/ingredients`, datas, {
-        headers: {
-            'Authorization': `Bearer ${access}`
-        }
+        headers: { 'Authorization': `Bearer ${access}` }
     })
     return response.data.ingredient
 })
@@ -41,24 +35,16 @@ export const addIngredient = createAsyncThunk('ingredients/addIngredient', async
 export const deleteIngredient = createAsyncThunk('ingredients/deleteIngredient', async(id:number) => {
     const access = await getToken()
     const response = await axios.delete(`${URL_BASE}/ingredients/${id}`, {
-        headers: {
-            'Authorization': `Bearer ${access}`
-        }
+        headers: { 'Authorization': `Bearer ${access}` }
     })
     return response.data.ingredient   
 })
 
 export const updateIngredient = createAsyncThunk('ingredients/updateIngredient', async(data:any) => {
-    const access = await getToken()
-    console.log(data);
-    
+    const access = await getToken()    
     const response = await axios.put(`${URL_BASE}/ingredients/${parseInt(data.id)}`, {name: data.name}, {
-        headers: {
-            'Authorization': `Bearer ${access}`
-        }
-    })
-    console.log(response.data);
-    
+        headers: { 'Authorization': `Bearer ${access}` }
+    })    
     return response.data.ingredient   
 })
 
@@ -99,8 +85,6 @@ const ingredientsSlice = createSlice({
             })
             .addCase(updateIngredient.fulfilled, (state, action) => {
                 state.status = 'succeeded'
-                console.log(action.payload);
-                
                 let newIngredients: object[] = [];
                 state.ingredients.map((ingredient:any) => {
                     if (ingredient.id === action.payload.id) {
@@ -108,9 +92,7 @@ const ingredientsSlice = createSlice({
                     }
                     newIngredients.push(ingredient)
                 })
-                
                 state.ingredients = newIngredients;
-                
             })
             .addCase(updateIngredient.rejected, (state, action) => {
                 state.status = 'failed'

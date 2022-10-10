@@ -13,7 +13,6 @@ const RecipeView: FunctionComponent = () => {
     const recipesStatus = useSelector(getRecipesStatus)
     const recipesError = useSelector(getRecipesError)
 
-    const [isAsideOpen, setIsAsideOpen] = useState<boolean>(false)
     const [isFirstLoad, setIsFirstLoad] = useState<boolean>(true)
     const [needRefresh, setNeedRefresh ] = useState<boolean>(false)
 

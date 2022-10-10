@@ -3,12 +3,9 @@ import { Form } from 'react-bootstrap'
 import { useSelector, useDispatch } from 'react-redux'
 import { getAllIngredients, getIngredients, getIngredientsError, getIngredientsStatus } from '../../store/ingredientsSlice';
 import { AppDispatch } from '../../store/store';
-import IngredientsList from '../lists/IngredientsList';
 
 const IngredientsCombo: FunctionComponent<{getIngredient: Function, categoryId: number}> = ({getIngredient, categoryId}) => {
     const dispatch: AppDispatch = useDispatch()
-    const [ingredientsList, setIngredientsList] = useState<object[]>([])
-
 
     //ingredients load
     const ingredients = useSelector(getAllIngredients)
