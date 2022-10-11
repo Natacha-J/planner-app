@@ -1,7 +1,7 @@
 import { useEffect, FunctionComponent } from 'react'
 import { Form } from 'react-bootstrap'
 import { useSelector, useDispatch } from 'react-redux'
-import { getAllMeasures, getMeasures, getMeasuresError, getMeasuresStatus } from '../../store/measuresSlice';
+import { getAllMeasures, getMeasures, getMeasuresError, getMeasuresStatus } from '../../store/slices/measuresSlice';
 import { AppDispatch } from '../../store/store';
 
 const MeasuresCombo: FunctionComponent<{getMeasure: Function}> = ({getMeasure}) => {

@@ -1,7 +1,7 @@
 import { useEffect, FunctionComponent } from 'react'
 import { Form } from 'react-bootstrap'
 import { useSelector, useDispatch } from 'react-redux'
-import { getAllCategories, getCategories, getCategoriesError, getCategoriesStatus } from '../../store/categoriesSlice';
+import { getAllCategories, getCategories, getCategoriesError, getCategoriesStatus } from '../../store/slices/categoriesSlice';
 import { AppDispatch } from '../../store/store';
 
 const CategoriesCombo: FunctionComponent<{getCategory: Function}> = ({getCategory}) => {

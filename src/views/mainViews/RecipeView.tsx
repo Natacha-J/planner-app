@@ -3,7 +3,7 @@ import { Button } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { AsideCard, Loader, SmallCard } from '../../components';
-import { addRecipe, getAllRecipes, getRecipes, getRecipesError, getRecipesStatus } from '../../store/recipesSlice';
+import { addRecipe, getAllRecipes, getRecipes, getRecipesError, getRecipesStatus } from '../../store/slices/recipesSlice';
 import { AppDispatch } from '../../store/store';
 
 const RecipeView: FunctionComponent = () => {

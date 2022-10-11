@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
 import axios from "axios"
-import getToken, { URL_BASE } from "./dbAccess"
+import getToken, { URL_BASE } from "../dbAccess"
 
 //TS interface
 export interface shoppingListState{

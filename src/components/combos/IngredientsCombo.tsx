@@ -1,7 +1,7 @@
 import { useState, useEffect, FunctionComponent } from 'react'
 import { Form } from 'react-bootstrap'
 import { useSelector, useDispatch } from 'react-redux'
-import { getAllIngredients, getIngredients, getIngredientsError, getIngredientsStatus } from '../../store/ingredientsSlice';
+import { getAllIngredients, getIngredients, getIngredientsError, getIngredientsStatus } from '../../store/slices/ingredientsSlice';
 import { AppDispatch } from '../../store/store';
 
 const IngredientsCombo: FunctionComponent<{getIngredient: Function, categoryId: number}> = ({getIngredient, categoryId}) => {

@@ -1,19 +1,28 @@
-import { FunctionComponent, useState } from "react";
+import { FunctionComponent, useEffect, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { X } from "react-bootstrap-icons";
 import { useForm } from "react-hook-form";
 import CategoriesCombo from "../combos/CategoriesCombo";
-import { ingredientsSlice } from "../../store";
 import IngredientsCombo from "../combos/IngredientsCombo";
 import MeasuresCombo from "../combos/MeasuresCombo";
 
 const AsideCard: FunctionComponent<{sendDatas: Function, component: string}> = ({sendDatas, component}) => {
-    const { register, handleSubmit, formState: {errors}} = useForm()
+    const { register, handleSubmit, reset, formState, formState: { isSubmitSuccessful }} = useForm()
     const [isAsideOpen, setIsAsideOpen] = useState<boolean>(false)
     const [categorySelected, setCategorySelected] = useState<number>(0)
     const [measureSelected, setMeasureSelected] = useState<number>(0)
     const [ingredientSelected, setIngredientSelected] = useState<any>()
-    const [ ingredientsList, setIngredientsList] = useState<object[]>([])
+    const [ingredientsList, setIngredientsList] = useState<object[]>([])
+
+    useEffect(() => {
+        if (formState.isSubmitSuccessful) {
+            reset({
+                 name: '',
+                 title: '',
+                 quantity: ''
+            })
+        }
+    }, [formState, reset])
 
     const toggleAside = () => {
         setIsAsideOpen(!isAsideOpen)
@@ -39,7 +48,6 @@ const AsideCard: FunctionComponent<{sendDatas: Function, component: string}> = (
         e.stopPropagation()
         setIngredientsList(ingredientsList.concat({...ingredientSelected, quantity: datas.quantity} ))
     }
-console.log(ingredientsList);
 
     const removeIngredient = (id:number) => {
         const newTab = ingredientsList.filter(ingredient => Object.values(ingredient)[0] != id)
@@ -60,13 +68,14 @@ console.log(ingredientsList);
                 title: datas.title,
                 ingredients: []
             }  
-        }
-        ingredientsList.map((ingredient:any) => {
-            newItem.ingredients.push({
-                IngredientId: ingredient.id,
-                quantity: ingredient.quantity
+            ingredientsList.map((ingredient:any) => {
+                newItem.ingredients.push({
+                    IngredientId: ingredient.id,
+                    quantity: ingredient.quantity
+                })
             })
-        })
+            setIngredientsList([])
+        }
         sendDatas(newItem)
     }
     

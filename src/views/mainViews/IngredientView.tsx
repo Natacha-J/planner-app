@@ -2,8 +2,8 @@ import { FunctionComponent, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import { Loader, SmallCard, AsideCard } from "../../components";
-import { getAllCategories, getCategoriesStatus, getCategoriesError, getCategories } from "../../store/categoriesSlice";
-import { addIngredient } from "../../store/ingredientsSlice";
+import { getAllCategories, getCategoriesStatus, getCategoriesError, getCategories } from "../../store/slices/categoriesSlice";
+import { addIngredient } from "../../store/slices/ingredientsSlice";
 import { AppDispatch } from "../../store/store";
 
 const IngredientView: FunctionComponent = () => {

@@ -3,7 +3,7 @@ import { Button, Form } from 'react-bootstrap'
 import { Pencil, X, Check  } from "react-bootstrap-icons";
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
-import { deleteIngredient, getIngredients, updateIngredient } from '../../store/ingredientsSlice';
+import { deleteIngredient, getIngredients, updateIngredient } from '../../store/slices/ingredientsSlice';
 import { AppDispatch } from '../../store/store';
 
 const IngredientsList: FunctionComponent = (props: any) => {

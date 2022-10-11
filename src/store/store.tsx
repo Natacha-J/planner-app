@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit'
-import recipesReducer from './recipesSlice'
-import ingredientsReducer from './ingredientsSlice'
-import categoriesReducer from './categoriesSlice'
-import measuresReducer from './measuresSlice'
-import stocksReducer from './stocksSlice'
-import shoppingListsReducer from './shoppingListsSlice'
+import recipesReducer from './slices/recipesSlice'
+import ingredientsReducer from './slices/ingredientsSlice'
+import categoriesReducer from './slices/categoriesSlice'
+import measuresReducer from './slices/measuresSlice'
+import stocksReducer from './slices/stocksSlice'
+import shoppingListsReducer from './slices/shoppingListsSlice'
 
 export const store = configureStore({
     reducer: {
